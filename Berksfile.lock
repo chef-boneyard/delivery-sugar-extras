@@ -1,0 +1,7 @@
+DEPENDENCIES
+  delivery-sugar-extras
+    path: .
+    metadata: true
+
+GRAPH
+  delivery-sugar-extras (0.1.1)

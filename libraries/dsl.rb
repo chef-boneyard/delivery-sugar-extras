@@ -14,10 +14,10 @@
 # limitations under the License.
 #
 
-chef_gem 'artifactory' do
-  compile_time true
-end
+# These files create / add to the Delivery::DSL module
+require_relative 'helpers'
 
-chef_gem 'jenkins_api_client' do
-  compile_time true
-end
+# And these mix the DSL methods into the Chef infrastructure
+Chef::Recipe.send(:include, DeliverySugarExtras::DSL)
+Chef::Resource.send(:include, DeliverySugarExtras::DSL)
+Chef::Provider.send(:include, DeliverySugarExtras::DSL)
