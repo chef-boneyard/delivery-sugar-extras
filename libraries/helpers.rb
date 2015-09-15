@@ -15,7 +15,12 @@
 #
 
 module DeliverySugarExtras
+  #
+  # Helpers Module for general purposes
+  #
   module Helpers
+    module_function
+    
     def version_env_key(version)
       version[0..6]
     end
@@ -45,9 +50,8 @@ module DeliverySugarExtras
         a: 'delivery')['results'].map { |e| "#{e["version"]}-1" }
     end
   end
-end
 
-module DeliverySugarExtras
+  # Module that exposes multiple helpers
   module DSL
     def version_env_key(version)
       DeliverySugarExtras::Helpers.version_env_key(version)
