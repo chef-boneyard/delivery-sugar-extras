@@ -53,11 +53,11 @@ module DeliverySugarExtras
       DeliverySugarExtras::Helpers.version_env_key(version)
     end
 
-    def add_all_change_data_to_node(node)
+    def add_all_change_data_to_node
       DeliverySugarExtras::Helpers.add_all_change_data_to_node(node)
     end
 
-    def get_delivery_versions(node)
+    def get_delivery_versions
       DeliverySugarExtras::Helpers.get_delivery_versions(node)
     end
   end
