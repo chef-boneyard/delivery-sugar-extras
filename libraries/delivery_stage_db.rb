@@ -85,7 +85,7 @@ class Chef
       def dbi_id
         @dbi_id if @dbi_id
 
-        ::DeliverySugarExtras::Helpers.add_all_change_data_to_node(node)
+        add_all_change_data_to_node
 
         change = node['delivery']['change']
 
