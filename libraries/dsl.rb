@@ -21,3 +21,4 @@ require_relative 'helpers'
 Chef::Recipe.send(:include, DeliverySugarExtras::DSL)
 Chef::Resource.send(:include, DeliverySugarExtras::DSL)
 Chef::Provider.send(:include, DeliverySugarExtras::DSL)
+Chef::Resource::RubyBlock.send(:include, DeliverySugarExtras::DSL)
