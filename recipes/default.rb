@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
-chef_gem 'artifactory' do
+chef_gem 'mixlib-install' do
   compile_time true
 end
 
