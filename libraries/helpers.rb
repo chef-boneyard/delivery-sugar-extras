@@ -20,7 +20,7 @@ module DeliverySugarExtras
   #
   module Helpers
     module_function
-    
+
     def version_env_key(version)
       version[0..6]
     end
@@ -32,22 +32,15 @@ module DeliverySugarExtras
     end
 
     def get_delivery_versions(node)
-      require 'artifactory'
+      require 'mixlib/install'
 
-      client = Artifactory::Client.new(
-        endpoint: 'http://artifactory.opscode.us',
-      )
-
-      ## Note the version here. We are appending '-1' because artifactory
-      ## returns the version as 0.3.73 in the outer versions call even though
-      ## the artifact is 0.3.37-1. We'd have to make an additional call for
-      ## each to get the version with '-1'. We should never have anything other
-      ## than '-1' so we are encuring a bit of calculated risk here for the sake
-      ## of not having to call multiple apis.
-      client.get('/api/search/versions',
-        repos: 'omnibus-stable-local',
-        g: 'com.getchef',
-        a: 'delivery')['results'].map { |e| "#{e["version"]}-1" }
+      # NOTE: This is using a mixlib-install private API as we still need
+      #       to add returning a list of versions for a product to the
+      #       public APIs.
+      backend = Mixlib::Install::Backend::Bintray.new(nil)
+      # The versions array returned by this API call is ordered so the
+      # latest release is item zero in the array!
+      backend.bintray_get("/stable/delivery")['versions']
     end
   end
 
